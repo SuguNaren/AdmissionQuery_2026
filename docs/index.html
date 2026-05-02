@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stella Maris AI</title>
+    <link rel="stylesheet" href="./static/style.css?v=1">
+</head>
+<body>
+
+<nav class="navbar"></nav>
+
+<div id="chatbot">
+    <div id="chatbox"></div>
+
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Ask anything..." />
+        <button onclick="sendMessage()" class="send-btn" type="button">Send</button>
+    </div>
+</div>
+
+<script>
+window.SMC_CHAT_CONFIG = {
+    chatEndpoint: "https://snake-pregnancy-wax-generates.trycloudflare.com/chat",
+    resetEndpoint: "https://snake-pregnancy-wax-generates.trycloudflare.com/reset-chat",
+    resolveCourseEndpoint: "https://snake-pregnancy-wax-generates.trycloudflare.com/resolve-course"
+};
+</script>
+<script src="./static/script.js?v=1" defer></script>
+
+</body>
+</html>
