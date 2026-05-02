@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SMC - Online Application Home</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link href="static/chatbot-widget.css?v=3" rel="stylesheet" type="text/css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Times New Roman", Times, serif;
+            background: #dcecf1;
+            color: #000;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .top-band {
+            background: #fff;
+            padding: 8px 16px 10px;
+            text-align: center;
+        }
+
+        .brand {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .brand-title {
+            font-size: 27px;
+            line-height: 1;
+            color: #5fa2c4;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            color: #8f7a62;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .page-shell {
+            width: min(1120px, calc(100% - 28px));
+            margin: 0 auto;
+            padding: 56px 0 72px;
+        }
+
+        .content-panel {
+            background: #e4f2f6;
+            padding: 54px 58px 42px;
+            min-height: 620px;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        ol {
+            margin-top: 0;
+        }
+
+        .page-title {
+            margin-bottom: 14px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .body-copy,
+        .body-copy li,
+        .numbered-list li {
+            font-size: 20px;
+            line-height: 1.45;
+        }
+
+        .body-copy p {
+            margin-bottom: 12px;
+        }
+
+        .section-heading {
+            margin: 24px 0 10px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .bullet-list {
+            margin-bottom: 14px;
+            padding-left: 26px;
+        }
+
+        .bullet-list li {
+            margin-bottom: 3px;
+        }
+
+        .numbered-list {
+            margin: 0 0 18px;
+            padding-left: 28px;
+        }
+
+        .numbered-list li {
+            margin-bottom: 8px;
+            padding-left: 4px;
+        }
+
+        .note-block,
+        .declaration-block {
+            margin-top: 24px;
+        }
+
+        .sub-title {
+            margin-bottom: 10px;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .declaration-list {
+            display: grid;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .check-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 20px;
+            line-height: 1.35;
+            font-weight: bold;
+        }
+
+        .check-row input {
+            margin: 4px 0 0;
+            width: 16px;
+            height: 16px;
+            accent-color: #4b89a6;
+            flex: 0 0 auto;
+        }
+
+        .prospectus-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .prospectus-link {
+            min-width: 172px;
+            padding: 7px 18px 8px;
+            border-radius: 999px;
+            border: 1px solid #6c8290;
+            background: linear-gradient(180deg, #7fa5b7 0%, #37657d 47%, #9fa8ad 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 1px 3px rgba(0, 0, 0, 0.18);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .prospectus-link:hover {
+            filter: brightness(1.03);
+        }
+
+        .chat-launcher {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 9998;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 68px;
+            height: 68px;
+            padding: 0;
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: #fff;
+            box-shadow: 0 20px 40px rgba(25, 118, 210, 0.24);
+            cursor: pointer;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 0.04em;
+        }
+
+        .chat-launcher:hover {
+            transform: translateY(-1px);
+        }
+
+        .smc-chatbot-widget + .chat-launcher {
+            display: inline-flex;
+        }
+
+        .smc-chatbot-widget:not(.chat-hidden) + .chat-launcher {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                width: min(100%, calc(100% - 14px));
+                padding-top: 18px;
+            }
+
+            .content-panel {
+                padding: 28px 20px 34px;
+            }
+
+            .brand-title {
+                font-size: 22px;
+            }
+
+            .page-title {
+                font-size: 22px;
+            }
+
+            .body-copy,
+            .body-copy li,
+            .numbered-list li,
+            .check-row {
+                font-size: 17px;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        window.SMC_CHAT_CONFIG = {
+            chatEndpoint: "http://127.0.0.1:8086/chat",
+            resetEndpoint: "http://127.0.0.1:8086/reset-chat"
+        };
+    </script>
+</head>
+<body>
+    <header class="top-band">
+        <a class="brand" href="#">
+            <img src="static/logo.png" alt="Stella Maris College logo">
+            <span class="brand-title">Stella Maris College</span>
+            <span class="brand-subtitle">Autonomous, Chennai - 600 086</span>
+        </a>
+    </header>
+
+    <main class="page-shell">
+        <section class="content-panel body-copy">
+            <h1 class="page-title">Instructions for Submitting the Online Application Form</h1>
+
+            <p>Applicants are required to carefully read the instructions given below before submitting the online application form.</p>
+
+            <p>The College reserves the right to reject applications that are</p>
+            <ul class="bullet-list">
+                <li>Incomplete</li>
+                <li>Incorrect or contain false information</li>
+                <li>Missing mandatory documents</li>
+                <li>Submitted without payment of the application fee</li>
+            </ul>
+
+            <h2 class="section-heading">1. Uploading Required Documents</h2>
+            <p>Before submitting the online application form, applicants must upload the following scanned images:</p>
+            <ol class="numbered-list">
+                <li>Passport-size photograph in JPG/JPEG format (maximum size: 50 KB)</li>
+                <li>Applicant's signature in JPG/JPEG format (maximum size: 20 KB)</li>
+                <li>Parent/Guardian's signature in JPG/JPEG format (maximum size: 20 KB)</li>
+                <li>Community Certificate (except for OC and "Others" categories) in JPG/JPEG/GIF format (maximum size: 2 MB)</li>
+                <li>Baptism Certificate (only for Catholic applicants) in JPG/JPEG/GIF format (maximum size: 2 MB)</li>
+                <li>Self-attested copies of all available semester mark sheets (for Postgraduate applicants) compiled into a single PDF (maximum size: 5 MB)</li>
+            </ol>
+
+            <h2 class="section-heading">2. Important Guidelines</h2>
+            <ol class="numbered-list">
+                <li>Documents can be uploaded only after entering academic marks.</li>
+                <li>The Unique Application Number (UAN), required for uploading documents, will be generated when the "Save" option is clicked on the Preview page.</li>
+                <li>Use the UAN as the Username and your Date of Birth as the Password to log in and upload documents on the College website.</li>
+                <li>Applicants may edit application details before paying the application fee by clicking the "Login" button.</li>
+                <li><strong>Editing or updating details will not be possible after the application fee has been paid.</strong></li>
+                <li>Payment of the application fee must be made online via internet banking, credit card, or debit card only.</li>
+                <li>The application fee is non-refundable under any circumstances.</li>
+                <li>Applicants can check their application and fee payment status through the Applicant's login on the College website.</li>
+                <li>The receipt of the application fee will be updated in the Applicant's login 24 hours after the transaction.</li>
+                <li>Information regarding applicants shortlisted for interviews will be sent via email and SMS, and uploaded on the College website. Applicants must attend the interview on the date and time specified. Being called for an interview does not guarantee admission.</li>
+                <li>No information will be sent to applicants who are not provisionally selected.</li>
+                <li>The list of provisionally selected applicants will be uploaded on the College website after 8:00 p.m.</li>
+                <li>Selected applicants must pay the prescribed fees and submit their original certificates along with photocopies on the date and time specified. Late payments will not be accepted.</li>
+                <li>Details about documents required at the time of interview can be accessed by clicking the Document Info Attachment button.</li>
+            </ol>
+
+            <section class="note-block">
+                <h3 class="sub-title">Note:</h3>
+                <p><strong>The application fee is non-refundable.</strong></p>
+                <p>For further queries, please email : <strong>admissions@stellamariscollege.edu.in</strong></p>
+            </section>
+
+            <section class="declaration-block">
+                <h3 class="sub-title">Declaration</h3>
+                <div class="declaration-list">
+                    <label class="check-row">
+                        <input id="Chkagree1" type="checkbox">
+                        <span>I have carefully read the prospectus, instructions, and eligibility criteria for applying to the programmes offered by the College.</span>
+                    </label>
+                    <label class="check-row">
+                        <input id="chkagree" type="checkbox">
+                        <span>I understand and agree to abide by the instructions for applying for admission to Stella Maris College.</span>
+                    </label>
+                </div>
+
+                <div class="prospectus-row">
+                    <a class="prospectus-link" href="StellaMarisCollegeProspectus-UG_2026-2027.pdf" target="_blank" rel="noopener">UG Prospectus</a>
+                    <a class="prospectus-link" href="StellaMarisCollegeProspectus-PG_2026-2027.pdf" target="_blank" rel="noopener">PG Prospectus</a>
+                    <a class="prospectus-link" href="Hostel_Prospectus_26-27.pdf" target="_blank" rel="noopener">Hostel Prospectus</a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <div id="chatbot" class="smc-chatbot-widget chat-hidden">
+        <div class="chat-header">
+            <div class="chat-brand">
+                <img src="static/logo.png" alt="Stella Maris College logo" class="chat-logo">
+                <span>Stella Maris College (Autonomous)</span>
+            </div>
+            <button onclick="toggleChat()" class="close-btn" type="button" aria-label="Close chat">x</button>
+        </div>
+
+        <div id="chatbox"></div>
+
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Ask anything...">
+            <button onclick="sendMessage()" class="send-btn" type="button">Send</button>
+        </div>
+    </div>
+
+    <button id="chatLauncher" class="chat-launcher" type="button" onclick="toggleChat()" aria-controls="chatbot" aria-expanded="false" aria-label="Open chat">
+        Chat
+    </button>
+
+    <script src="static/script.js?v=6" type="text/javascript"></script>
+</body>
+</html>
